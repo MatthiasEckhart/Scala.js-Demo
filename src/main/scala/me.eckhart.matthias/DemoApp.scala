@@ -28,5 +28,34 @@ object DemoApp extends JSApp {
       text1Input.textContent = text1.value
     }
 
+    /* Sketchpad:
+     * More details: http://www.lihaoyi.com/hands-on-scala-js/#MakingaSketchpadusingMouseInput */
+    val sketchpadCanvas = document.getElementById("sketchpad").asInstanceOf[html.Canvas]
+    sketchpadCanvas.width = sketchpadCanvas.parentElement.clientWidth
+    sketchpadCanvas.height = sketchpadCanvas.parentElement.clientHeight
+    val fillColorSelect = document.getElementById("sketchpad-color").asInstanceOf[html.Select]
+    val renderer = sketchpadCanvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
+    renderer.fillStyle = "#f8f8f8"
+    renderer.fillRect(0, 0, sketchpadCanvas.width, sketchpadCanvas.height)
+    renderer.fillStyle = fillColorSelect.value
+
+    fillColorSelect.onchange = { (e: dom.Event) => renderer.fillStyle = fillColorSelect.value }
+
+    var down = false
+
+    sketchpadCanvas.onmousedown = (e: dom.MouseEvent) => down = true
+
+    sketchpadCanvas.onmouseup = (e: dom.MouseEvent) => down = false
+
+    sketchpadCanvas.onmousemove = {
+      (e: dom.MouseEvent) =>
+        val rect =
+          sketchpadCanvas.getBoundingClientRect()
+        if (down) renderer.fillRect(
+          e.clientX - rect.left,
+          e.clientY - rect.top,
+          10, 10
+        )
+    }
   }
 }

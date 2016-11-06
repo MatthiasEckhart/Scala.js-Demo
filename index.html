@@ -29,6 +29,7 @@
 <hr/>
 
 <div class="container">
+    <!-- Demonstration of a Click-Listener.  -->
     <div class="row">
         <div class="col-sm-6">
             <button id="button-1" type="button" class="btn btn-primary">Count Clicks</button>
@@ -40,6 +41,7 @@
 
     <hr/>
 
+    <!-- Demonstration of an Input-Listener. -->
     <div class="row">
         <div class="col-sm-6">
             <div class="input-group">
@@ -51,6 +53,26 @@
             Input: <span id="text-1-input"></span>
         </div>
     </div>
+
+    <hr/>
+
+    <!-- Demonstration of a canvas Sketchpad. -->
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Sketchpad</h4>
+            Color:
+            <select id="sketchpad-color">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="yellow">Yellow</option>
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <canvas id="sketchpad" style="width: 100%; height: 100%;"></canvas>
+        </div>
+    </div>
+
 </div>
 
 
